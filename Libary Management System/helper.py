@@ -20,3 +20,12 @@ def generate_random_password ( letters_count=10 , digits_count=4 , specials_coun
 
     random.shuffle(password)
     return "".join(password)
+
+
+def check_password_strength(password) :
+    pass
+
+
+def check_valid_phone_number(phone_num) :
+    pass
+
