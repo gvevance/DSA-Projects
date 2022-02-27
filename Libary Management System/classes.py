@@ -150,7 +150,7 @@ class Book :
                         print(f", {self._authors[i]}",end='')
                 print()
                 
-                print("Genre(s) - ")
+                print("Genre(s) - ",end='')
                 for i in range(len(self._genres)) :
                     if i == 0 :
                         print(self._genres[i],end='')
@@ -160,7 +160,6 @@ class Book :
 
                 print(f"Credits -",self._credits)
     
-
     def edit_title(self,verbose=False) :
         abort = False
 
@@ -187,10 +186,76 @@ class Book :
                 print("Title edited.\nTitle -",self._title)
 
     def edit_authors(self,verbose=False) :
-        pass
+        count = 0
+        abort = False
+        buffer = []
+
+        # enter authors
+        while (count < 3) :
+            temp = input("Enter author name (0 to finish) : ")
+            
+            if temp.strip() == '' :
+                count += 1
+                print("Empty author name entered. ",end='')
+
+            elif temp.strip() == '0' :
+                break
+            
+            else :
+                buffer.append(temp)
+
+        if count >= 3 :
+            print("Aborting book details editing ... ")
+            abort = True
+
+        if not abort :
+            self._authors = buffer
+
+            if verbose :
+                print("Author(s) edited.\nAuthor(s) - ",end='')
+                for i in range(len(self._authors)) :
+                    if i == 0 :
+                        print(self._authors[i],end='')
+                    else :
+                        print(f", {self._authors[i]}",end='')
+                print()
 
     def edit_genres(self,verbose=False) :
-        pass
+        count = 0
+        abort = False
+        buffer = []
+
+        while (count < 3) :
+            temp = input("Enter genre name (0 to finish) : ")
+            
+            if temp.strip() == '' :
+                count += 1
+                print("Empty genre name entered. ",end='')
+
+            elif temp.strip() == '0' :
+                break
+            
+            else :
+                buffer.append(temp)
+
+        if count >= 3 :
+            print("Aborting book details editing ... ")
+            abort = True
+
+        if not abort :
+            self._genres = buffer
+
+            if verbose :
+                print("Genre(s) editied. Genre(s) - ",end='')
+                for i in range(len(self._genres)) :
+                    if i == 0 :
+                        print(self._genres[i],end='')
+                    else :
+                        print(f", {self._genres[i]}",end='')
+                print()
+
+
+
 
     def edit_credits(self,verbose=False) :
         abort = False
