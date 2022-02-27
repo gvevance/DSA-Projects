@@ -1,4 +1,6 @@
 # menus at each screen
+from login import admin_login
+from login import user_login
 
 def admin_console_menu():
     pass
@@ -14,32 +16,36 @@ def new_user_signup_menu():
 
 def main_menu():
     
-    print("\n\tLibMan - the Advanced Library Management System\n")
-    print("1. Admin login \n2. User login \n3. New user? Sign up here. \n4. Exit \n")
-    
-    count = 0
-    while (count < 3 ):
-        option = input("Enter option (1/2/3/4) : ").strip()
+    while (True) :
+        
+        print("\n\tLibMan - the Advanced Library Management System\n")
+        print("1. Admin login \n2. User login \n3. New user? Sign up here. \n4. Exit \n")
+        
+        count = 0
+        while (count < 3 ):
+            option = input("Enter option (1/2/3/4) : ").strip()
 
-        if option not in ['1','2','3','4'] :
-            count += 1
-            print("Wrong option entered. ",end='')
+            if option not in ['1','2','3','4'] :
+                count += 1
+                print("Wrong option entered. ",end='')
 
-        else :
-            break
+            else :
+                break
 
-    if count >= 3 :
-        print("Aborting ... ")
-        exit()
+        if count >= 3 :
+            print("Aborting ... ")
+            exit()
 
-    if option == '1' :
-        admin_console_menu()
+        if option == '1' :
+            if admin_login():
+                admin_console_menu()
 
-    elif option == '2' :
-        user_console_menu()
+        elif option == '2' :
+            if user_login() :
+                user_console_menu()
 
-    elif option == '3' :
-        new_user_signup_menu()
+        elif option == '3' :
+            new_user_signup_menu()
 
-    elif option == '4' :
-        exit()
+        elif option == '4' :
+            exit()

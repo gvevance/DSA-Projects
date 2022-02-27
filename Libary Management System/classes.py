@@ -13,7 +13,7 @@ class Book :
         self._title = "Dummy title"
         self._authors = ["Dummy author 1","Dummy author 2"]
         self._genre = "Romance"
-        self._price = 100
+        self._credits = 100
         self._summary = "Dummy summary"
     
     def get_id(self) :
@@ -22,11 +22,11 @@ class Book :
     def get_title(self) :
         return self._title
 
-    def get_author(self) :
-        return self._author
+    def get_authors(self) :
+        return self._authors
 
-    def get_price(self) :
-        return self._price
+    def get_credits(self) :
+        return self._credits
 
     def get_summary(self) :
         return self._summary
@@ -59,11 +59,11 @@ class Book :
         if not abort :
             while (count < 3 ) :
                 try :
-                    buffer['price'] = float(input("Enter price of book : "))
+                    buffer['credits'] = float(input("Enter credits of this book : "))
 
                 except :
                     count += 1
-                    print("Invalid price entered. ",end="")
+                    print("Invalid credits entered. ",end="")
                 
             if count >= 3 :
                 print("Aborting ... ")
@@ -74,14 +74,16 @@ class Book :
         if not abort :
             self._title = buffer['title']
             self._authors = buffer['authors']
-            self._price = buffer["price"]
+            self._credits = buffer["credits"]
     
 
 
 
 class User :
 
-    ''' User has a unique userID, a unique username, and a strong password. The usual details are also stored.'''
+    ''' User has a unique userID, a unique username, and a strong password. The usual details are also stored. Each 
+    user belongs to one of 3 tiers. Each tier has a different credit limit - howmany credits worth of books a member 
+    of that tier can borrow at a time. '''
 
     def __init__(self) :
         self._userID = 123
@@ -89,6 +91,6 @@ class User :
         self._password = generate_random_password()
         self._name = "Dummy name"
         self._phone_number = '8542041960'
-        self._member_type = "Free tier"
+        self._member_type = 1       # 1 or 2 or 3
 
     
