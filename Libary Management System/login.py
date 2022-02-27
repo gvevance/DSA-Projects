@@ -1,7 +1,9 @@
 # login methods
 
 def admin_login():
-    pass
+    
+    return True
 
 def user_login():
-    pass
+    
+    return True

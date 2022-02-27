@@ -3,27 +3,27 @@ from login import admin_login
 from login import user_login
 
 def admin_console_menu():
-    pass
+    print("Entered Admin Console Menu")
 
 
 def user_console_menu():
-    pass
+    print("Entered User Console Menu")
 
 
 def new_user_signup_menu():
-    pass
+    print("Entered New User Signup Menu")
 
 
 def main_menu():
     
     while (True) :
-        
+
         print("\n\tLibMan - the Advanced Library Management System\n")
         print("1. Admin login \n2. User login \n3. New user? Sign up here. \n4. Exit \n")
         
         count = 0
         while (count < 3 ):
-            option = input("Enter option (1/2/3/4) : ").strip()
+            option = input("Enter option : ").strip()
 
             if option not in ['1','2','3','4'] :
                 count += 1
