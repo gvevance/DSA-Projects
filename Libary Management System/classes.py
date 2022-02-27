@@ -1,6 +1,7 @@
 # classes
 
 from helper import generate_random_password
+from helper import valid_bookID
 
 class Book :
     
@@ -160,6 +161,31 @@ class Book :
 
                 print(f"Credits -",self._credits)
     
+    def edit_bookID(self,verbose=False) :
+        abort = False
+
+        # enter bookID
+        count = 0
+        while (count < 3) :
+            buffer = input("Enter bookID : ")
+
+            if not valid_bookID(buffer) :
+                count += 1
+                print("Invalid bookID entered. ",end='')
+
+            else :
+                break
+
+        if count >= 3 :
+            print("Aborting bookID editing ... ")
+            abort = True
+
+        if not abort :
+            self._bookID = buffer
+
+            if verbose :
+                print("Book ID edited.\nBook ID -",self._bookID)
+
     def edit_title(self,verbose=False) :
         abort = False
 
@@ -253,9 +279,6 @@ class Book :
                     else :
                         print(f", {self._genres[i]}",end='')
                 print()
-
-
-
 
     def edit_credits(self,verbose=False) :
         abort = False

@@ -29,3 +29,6 @@ def check_password_strength(password) :
 def check_valid_phone_number(phone_num) :
     pass
 
+def valid_bookID(bookid) :
+    pass
+
