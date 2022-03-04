@@ -1,6 +1,7 @@
 # helper functions
 import random
 import string
+# import re
 
 def generate_random_password ( letters_count=10 , digits_count=4 , specials_count=3 ) :
     
@@ -22,13 +23,16 @@ def generate_random_password ( letters_count=10 , digits_count=4 , specials_coun
     return "".join(password)
 
 
-def check_password_strength(password) :
-    pass
+def valid_password(password) :
+    return True
 
 
-def check_valid_phone_number(phone_num) :
-    pass
+def valid_phone_number(phone_num) :
+    return True
 
 def valid_bookID(bookid) :
-    pass
+    return True
 
+
+def valid_adminID(adminID) :
+    return True

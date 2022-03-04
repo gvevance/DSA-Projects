@@ -2,7 +2,9 @@
 
 from helper import generate_random_password
 from helper import valid_bookID
-
+from helper import valid_adminID
+from helper import valid_password
+from helper import valid_phone_number
 class Book :
     
     ''' Every book has a unique bookID, name, author, genre, price and summary. Some books are included in a 
@@ -305,18 +307,131 @@ class Book :
 
 
 
-class User :
-
-    ''' User has a unique userID, a unique username, and a strong password. The usual details are also stored. Each 
-    user belongs to one of 3 tiers. Each tier has a different credit limit - howmany credits worth of books a member 
-    of that tier can borrow at a time. '''
-
+class Account :
+    ''' Parent class for various types of accounts - User, Admin. '''
+    
     def __init__(self) :
-        self._userID = 123
+        self._ID = 123
         self._username = "Dummy username"
         self._password = generate_random_password()
         self._name = "Dummy name"
-        self._phone_number = '8542041960'
-        self._member_type = 1       # 1 or 2 or 3
+        self._phone_number = '8542041960'        # 0 for user level clearance.
 
+    def get_ID(self) :
+        return self._ID
+
+    def get_username(self) :
+        return self._username
+
+    def get_pw(self) :
+        return self._password
     
+    def get_name(self) :
+        return self._name
+
+    def get_phone_num(self) :
+        return self._phone_number
+
+    def edit_name(self,verbose=False) :
+        self._name = input("Enter new name : ")
+
+        if verbose :
+            print("Name edited. Name - ",self._name)
+
+
+    def edit_password(self,verbose=False) :
+
+        oldpassword = input("Enter old password : ")
+        if self._password != oldpassword :
+            print("Wrong password entered. Aborting password edit ... ")
+            return
+
+        print("Password should have at least 8 characters, and must contain at least 2 special characters")
+        abort = False
+        count = 0
+        while (count < 3) :
+            buffer = input("Enter new password : ")
+            
+            if not valid_password(buffer) :
+                count += 1
+                print("Password too weak. ",end='')
+            
+            else :
+                break
+
+        if count >= 3 :
+            print("Aborting password editing ... ")
+            abort = True
+
+        if not abort :
+            self._password = buffer
+
+            if verbose :
+                print("Password edited. \nPassword - ",self._name)
+
+
+    def edit_phone_number(self,verbose=False) :
+        abort = False
+
+        count = 0
+        while (count < 3) :
+            buffer = input("Enter new phone number : ")
+            
+            if not valid_phone_number(buffer) :
+                count += 1
+                print("Invalid phone number entered. ",end='')
+            
+            else :
+                break
+
+        if count >= 3 :
+            print("Aborting phone number editing ... ")
+            abort = True
+
+        if not abort :
+            self._phone_number = buffer
+
+            if verbose :
+                print("Phone number edited. \nPhone number - ",self._ID)
+
+
+class User(Account) :
+    ''' User has a unique userID, a unique username, and a strong password. The usual details are also stored. Each 
+    user belongs to one of 3 tiers. Each tier has a different credit limit - howmany credits worth of books a member 
+    of that tier can borrow at a time. '''
+    
+    pass
+
+
+class Admin(Account) :
+    
+    def edit_adminID(self,verbose=False) :
+        abort = False
+
+        count = 0
+        while (count < 3) :
+            buffer = input("Enter new ID : ")
+            
+            if not valid_adminID(buffer) :
+                count += 1
+                print("Invalid admin ID entered. ",end='')
+            
+            else :
+                break
+
+        if count >= 3 :
+            print("Aborting admin ID editing ... ")
+            abort = True
+
+        if not abort :
+            self._ID = buffer
+
+            if verbose :
+                print("Admin ID edited. \nAdmin ID - ",self._ID)
+
+
+
+
+
+
+
