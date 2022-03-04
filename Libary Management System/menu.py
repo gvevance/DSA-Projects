@@ -2,21 +2,31 @@
 from login import admin_login
 from login import user_login
 
+import os
+
 def admin_console_menu():
+    os.system('clear')
     print("Entered Admin Console Menu")
+    input()
+    
 
 
 def user_console_menu():
+    os.system('clear')
     print("Entered User Console Menu")
+    input()
 
 
 def new_user_signup_menu():
+    os.system('clear')
     print("Entered New User Signup Menu")
+    input()
 
 
 def main_menu():
-    
+
     while (True) :
+        os.system('clear')
 
         print("\n\tLibMan - the Advanced Library Management System\n")
         print("1. Admin login \n2. User login \n3. New user? Sign up here. \n4. Exit \n")
