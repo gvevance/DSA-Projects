@@ -5,6 +5,8 @@ from helper import valid_bookID
 from helper import valid_adminID
 from helper import valid_password
 from helper import valid_phone_number
+
+
 class Book :
     
     ''' Every book has a unique bookID, name, author, genre, price and summary. Some books are included in a 
@@ -36,6 +38,7 @@ class Book :
 
     def get_summary(self) :
         return self._summary
+
 
     def edit_details(self,verbose=False) :
         abort = False
