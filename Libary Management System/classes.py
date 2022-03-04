@@ -8,13 +8,12 @@ from helper import valid_phone_number
 
 
 class Book :
-    
     ''' Every book has a unique bookID, name, author, genre, price and summary. Some books are included in a 
     particular user membership type, some are not. Can include a sample of the book if needed.
     '''
 
     def __init__(self) :
-        self._bookID = 123
+        self._bookID = '123'
         self._title = "Dummy title"
         self._authors = ["Dummy author 1","Dummy author 2"]
         self._genres = ["Romance"]
@@ -314,7 +313,7 @@ class Account :
     ''' Parent class for various types of accounts - User, Admin. '''
     
     def __init__(self) :
-        self._ID = 123
+        self._ID = '123'
         self._username = "Dummy username"
         self._password = generate_random_password()
         self._name = "Dummy name"
@@ -326,7 +325,7 @@ class Account :
     def get_username(self) :
         return self._username
 
-    def get_pw(self) :
+    def get_password(self) :
         return self._password
     
     def get_name(self) :
@@ -359,7 +358,7 @@ class Account :
                 count += 1
                 print("Password too weak. ",end='')
             
-            else :
+            else :  # todo : Re-enter new password
                 break
 
         if count >= 3 :

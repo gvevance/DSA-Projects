@@ -10,34 +10,44 @@ def admin_login():
     adminID = input("Enter admin ID : ")
     
     #! FIGURE OUT CACHING OF ADMIN INFO
-    
-    with open(admin_pkl,'rb') as pfile :
-        while (True) :
-            try :
-                admin = pickle.load(pfile)
-                if admin.getID() == adminID :
-                    count = 0
-                    while (count < 3) :
-                        username = input("Enter username : ")
-                        password = input("Enter password : ")
 
-                        if username != admin.get_username() or password != admin.get_pw() :
-                            count += 1
-                            print("\nWrong username or password entered.\n")
+    try :
+        found = False
+        with open(admin_pkl,'rb') as pfile :
+            while (True) :
+                try :
+                    admin = pickle.load(pfile)
+                    if admin.get_ID() == adminID :
+                        found , count = True ,  0
+                        while (count < 3) :
+                            username = input("Enter username : ")
+                            password = input("Enter password : ")
 
-                        else :
-                            break
-                        
-                    if count >= 3 :
-                        print("Aborting login ... ")
-                        return
+                            if username != admin.get_username() or password != admin.get_password() :
+                                count += 1
+                                print("\nWrong username or password entered.\n")
 
-            except EOFError:
-                print("Admin ID incorrect.\n")
-                break
-    
+                            else :
+                                break
+                            
+                        if count >= 3 :
+                            print("Aborting login ... ")
+                            return False
 
-    return True
+                except EOFError:
+                    if not found :
+                        print("Admin ID incorrect.\n")
+                        return False
+                    else :
+                        return True
+
+    except FileNotFoundError :
+        print(f"{admin_pkl} does not exist.")
+        return False
+
+    except :
+        return False    
+
 
 def user_login():
     
