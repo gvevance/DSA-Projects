@@ -7,10 +7,10 @@ def admin_login():
     # use flags to use both methods and compare speed and memory differences
 
     admin_pkl = "admins.pkl"
-    adminID = input("Enter admin ID : ")
+    adminID = input("\nEnter admin ID : ")
     
     #! FIGURE OUT CACHING OF ADMIN INFO
-
+    
     try :
         found = False
         with open(admin_pkl,'rb') as pfile :
@@ -18,28 +18,31 @@ def admin_login():
                 try :
                     admin = pickle.load(pfile)
                     if admin.get_ID() == adminID :
-                        found , count = True ,  0
-                        while (count < 3) :
-                            username = input("Enter username : ")
-                            password = input("Enter password : ")
-
-                            if username != admin.get_username() or password != admin.get_password() :
-                                count += 1
-                                print("\nWrong username or password entered.\n")
-
-                            else :
-                                break
-                            
-                        if count >= 3 :
-                            print("Aborting login ... ")
-                            return False
+                        found = True
+                        break    
 
                 except EOFError:
-                    if not found :
-                        print("Admin ID incorrect.\n")
-                        return False
-                    else :
-                        return True
+                    break
+
+        if not found :
+            print("Incorrect User ID entered.")
+            return False
+
+        count = 0
+        while (count < 3) :
+            username = input("Enter username : ")
+            password = input("Enter password : ")
+
+            if username != admin.get_username() or password != admin.get_password() :
+                count += 1
+                print("\nWrong username or password entered.\n")
+
+            else :
+                return True
+            
+        if count >= 3 :
+            print("Too many incorrect logins. Aborting ... ")
+            return False
 
     except FileNotFoundError :
         print(f"{admin_pkl} does not exist.")

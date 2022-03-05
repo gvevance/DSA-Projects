@@ -47,8 +47,15 @@ def main_menu():
             exit()
 
         if option == '1' :
-            if admin_login():
-                admin_console_menu()
+            while ( count < 3 ) :
+                if admin_login():
+                    admin_console_menu()
+                    break
+                else :
+                    count += 1
+
+            if count >= 3 :
+                input("\nLogin unsuccessful. Press a key to go back. ")
 
         elif option == '2' :
             if user_login() :
